@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="productCatalogApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      padding: 10px;
+      display: flex;
+    }
+
+    .product img {
+      max-width: 200px;
+      margin-right: 20px;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product h2 {
+      margin-top: 0;
+    }
+
+    .filters {
+      margin-bottom: 20px;
+    }
+
+    .filter {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div ng-controller="ProductCatalogController as catalog" class="header">
+  <h1>Product Catalog</h1>
+</div>
+
+<div class="container">
+  <div class="filters">
+    <label class="filter">
+      Category:
+      <select ng-model="catalog.selectedCategory">
+        <option value="">All</option>
+        <option ng-repeat="category in catalog.categories" value="{{ category }}">{{ category }}</option>
+      </select>
+    </label>
+
+    <label class="filter">
+      Price:
+      <select ng-model="catalog.selectedPrice">
+        <option value="">All</option>
+        <option value="0-50">$0 - $50</option>
+        <option value="50-100">$50 - $100</option>
+        <option value="100-200">$100 - $200</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="products">
+    <div class="product" ng-repeat="product in catalog.products | filter: catalog.filterProducts">
+      <img ng-src="{{ product.image }}" alt="{{ product.name }}">
+      <div class="product-info">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price | currency }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script>
+  angular.module('productCatalogApp', [])
+    .controller('ProductCatalogController', function() {
+      var vm = this;
+
+      vm.categories = ['Electronics', 'Clothing', 'Books'];
+
+      vm.products = [
+        {
+          name: 'Smartphone',
+          category: 'Electronics',
+          description: 'The latest smartphone model.',
+          price: 500,
+          image: 'https://via.placeholder.com/200'
+        },
+        {
+          name: 'T-shirt',
+          category: 'Clothing',
+          description: 'A comfortable t-shirt.',
+          price: 20,
+          image: 'https://via.placeholder.com/200'
+        },
+        {
+          name: 'Book',
+          category: 'Books',
+          description: 'A bestselling novel.',
+          price: 15,
+          image: 'https://via.placeholder.com/200'
+        }
+      ];
+
+      vm.filterProducts = function(product) {
+        var categoryMatch = !vm.selectedCategory || product.category === vm.selectedCategory;
+        var priceMatch = !vm.selectedPrice || vm.getPriceRange(product.price) === vm.selectedPrice;
+        return categoryMatch && priceMatch;
+      };
+
+      vm.getPriceRange = function(price) {
+        if (price < 50) {
+          return '0-50';
+        } else if (price < 100) {
+          return '50-100';
+        } else {
+          return '100-200';
+        }
+      };
+    });
+</script>
+</body>
+</html>
