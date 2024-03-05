@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="taskManagerApp">
+<head>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="dynamic.css"> 
+</head>
+<center>
+<body ng-controller="TaskController as taskCtrl">
+  
+  <h1>Task Manager</h1>
+  
+  <div class="txt">
+    <input type="text" placeholder="Add Task" ng-model="taskCtrl.newTask">
+    <button ng-click="taskCtrl.addTask()">Add</button>
+  </div>
+  
+  <ul class="task-list">
+    <li ng-repeat="task in taskCtrl.tasks">
+      <span>{{task}}</span>
+      <button ng-click="taskCtrl.editTask($index)">Edit</button>
+      <button ng-click="taskCtrl.deleteTask($index)">Delete</button>
+    </li>
+  </ul>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    angular.module('taskManagerApp', [])
+      .controller('TaskController', function() {
+        var vm = this;
+        vm.tasks = [];
+        vm.newTask = '';
+
+        vm.addTask = function() {
+          if (vm.newTask.trim() !== '') {
+            vm.tasks.push(vm.newTask.trim());
+            vm.newTask = '';
+          }
+        };
+
+        vm.editTask = function(index) {
+          var editedTask = prompt('Edit task:', vm.tasks[index]);
+          if (editedTask !== null) {
+            vm.tasks[index] = editedTask;
+          }
+        };
+
+        vm.deleteTask = function(index) {
+          if (confirm('Are you sure you want to delete this task?')) {
+            vm.tasks.splice(index, 1);
+          }
+        };
+      });
+  </script>
+  </center>
+</body>
+</html>
