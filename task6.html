@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quizApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('data:image/jpeg;base64,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');
+      background-repeat: repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+
+    h1, h2 {
+   
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div ng-controller="QuizController as quiz">
+  <h1>{{ quiz.quizTitle }}</h1>
+
+  <div ng-show="!quiz.quizFinished">
+    <div ng-repeat="question in quiz.questions">
+      <h2>{{ question.questionText }}</h2>
+      <ul>
+        <li ng-repeat="option in question.options">
+          <label>
+            <input type="radio" ng-model="quiz.userAnswers[$parent.$index]" ng-value="$index">{{ option }}
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <button ng-click="quiz.submitQuiz()">Submit</button>
+  </div>
+
+  <div ng-show="quiz.quizFinished">
+    <h2>Quiz Result</h2>
+    <p><h1>You scored: {{ quiz.calculateScore() }}</h1></p>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script>
+  angular.module('quizApp', [])
+    .controller('QuizController', function() {
+      var vm = this;
+
+      vm.quizTitle = "Angular Quiz";
+      vm.quizFinished = false;
+      vm.userAnswers = [];
+
+      vm.questions = [
+        {
+          questionText: "What does HTML stand for?",
+          options: ["Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language"],
+          correctAnswer: 0
+        },
+        {
+          questionText: "What does CSS stand for?",
+          options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
+          correctAnswer: 1
+        },
+        {
+          questionText: "What does JS stand for?",
+          options: ["Just Saying", "JavaScript", "JavaSymbol"],
+          correctAnswer: 1
+        }
+      ];
+
+      vm.submitQuiz = function() {
+        vm.quizFinished = true;
+      };
+
+      vm.calculateScore = function() {
+        var score = 0;
+        for (var i = 0; i < vm.questions.length; i++) {
+          if (vm.userAnswers[i] === vm.questions[i].correctAnswer) {
+            score++;
+          }
+        }
+        return score;
+      };
+    });
+</script>
+</body>
+</html>
