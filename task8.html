@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List with AngularJS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://wallpapercave.com/wp/wp2117779.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .task {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .task.ng-enter,
+    .task.ng-leave {
+      transition: all 0.5s ease;
+    }
+
+    .task.ng-enter {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .task.ng-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .task.ng-leave {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .task.ng-leave-active {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 70%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div ng-controller="TodoController as todo" class="container">
+  <h1>To-Do List</h1>
+  <input type="text" ng-model="todo.newTask" placeholder="Add a new task">
+  <button ng-click="todo.addTask()">Add Task</button>
+  <div class="tasks">
+    <div class="task" ng-repeat="task in todo.tasks" ng-bind="task" ng-click="todo.removeTask($index)"></div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+<script>
+  angular.module('todoApp', ['ngAnimate'])
+    .controller('TodoController', function() {
+      var vm = this;
+      vm.tasks = [];
+
+      vm.addTask = function() {
+        if (vm.newTask.trim() !== '') {
+          vm.tasks.push(vm.newTask.trim());
+          vm.newTask = '';
+        }
+      };
+
+      vm.removeTask = function(index) {
+        vm.tasks.splice(index, 1);
+      };
+    });
+</script>
+
+</body>
+</html>
