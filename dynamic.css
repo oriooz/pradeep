@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("https://i.pinimg.com/736x/a2/20/38/a220382ec2520127ac8cb0e66eebe0c7.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+  padding: 0;
+  margin: 0;
+  font-size: 100;
+}
+
+.done {
+  margin-bottom: 150px;
+}
+
+.task-container input[type="text"] {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  margin-bottom: 5px;
+}
+
+.task-list li span {
+  margin-right: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
