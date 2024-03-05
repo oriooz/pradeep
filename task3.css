@@ -1,0 +1,38 @@
+body{
+    background-image: url('https://media.istockphoto.com/id/1438863326/photo/selective-of-maple-leaves-in-hoar-frost.webp?b=1&s=170667a&w=0&k=20&c=xhuzwTz_zWgkWS7ieLVwre3q3PuxZ6XhGCOaxatNtTQ=');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+
+}
+.weather-container {
+  max-width: 300px;
+  margin: 150px auto;
+  padding: 50px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-image: url('https://www.bing.com/th?id=OIP.2bU24q6apgndLnNl0mhIaQHaEK&w=160&h=100&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.weather-info {
+  display: flex;
+  align-items: center;
+}
+
+.weather-icon img {
+  width: 100%;
+
+}
+
+.weather-details {
+  margin-left: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
