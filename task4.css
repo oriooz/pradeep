@@ -1,0 +1,61 @@
+body{
+    background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/09/Desktop-Nature-Landscape-Images-Pics.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+.calendar {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #a30c0c;
+  border-radius: 15px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  
+  background:linear-gradient(90deg,blue,red);
+  position: center;
+  width:500px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  padding: 5px 10px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background-color: #6bcf29;
+  color: #eb0f0f;
+  border-radius: 5px;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #198ae7;
+  border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  .calendar {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .calendar-header button {
+    font-size: 16px;
+  }
+}
